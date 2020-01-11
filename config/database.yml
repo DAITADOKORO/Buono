@@ -28,5 +28,5 @@ production:
   charset: utf8mb4
   collation: utf8mb4_general_ci
   host: rds-mysql-server.csatmpmc7h1k.ap-northeast-1.rds.amazonaws.com
-  username: root
+  username: dai
   password: hasegawa
