@@ -1,0 +1,29 @@
+<% content_for(:html_title) { "オーナー編集" } %>
+
+<div class="container">
+  <h1>オーナー編集画面</h1>
+    <h3>オーナーID  <%= @admin.id %></h3>
+      <%= form_for @admin, :url => { :controller => :admins, :action => :update } do |f| %>
+        <% if @admin.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h3><%= @admin.errors.count %>error prohibited this obj from being saved:</h3>
+            <ul>
+              <% @admin.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <h3>氏名　　　　　　　　<%= f.text_field :name %></h3>
+        <h3>フリガナ　　　　　　<%= f.text_field :name_kana %></h3>
+        <h3>メールアドレス　　　<%= f.text_field :email %></h3>
+        <h3>退会ステータス　　　
+          <% if @admin.deleted_at.nil? %>
+            <%= link_to "退会状態にする", admin_admin_path, method: :delete, data:  { confirm: '本当に退会させますか？' }, class: "btn btn-danger" %>
+          <% else %>
+            <%= link_to "入会状態にする", admin_restore_admin_admin_path(@admin_user), method: :patch, class: "btn btn-primary" %>
+          <% end %>
+          <%= f.submit '変更を保存する', class: "btn btn-primary" %>
+        </h3>
+      <% end %>
+</div>

@@ -1,0 +1,23 @@
+<% content_for(:html_title) { "マイページ編集" } %>
+
+<div class="container">
+  <h1>登録情報編集</h1>
+      <%= form_for @user, :url => { :controller => :users, :action => :update } do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <h3>氏名　　　　　　　　<%= f.text_field :name %></h3>
+        <h3>フリガナ　　　　　　<%= f.text_field :name_kana %></h3>
+        <h3>メールアドレス　　　<%= f.text_field :email %></h3>
+        <%= link_to "退会する", user_path, method: :delete, data:  { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
+        <%= f.submit '変更を保存する', class: "btn btn-primary" %>
+      <% end %>
+</div>

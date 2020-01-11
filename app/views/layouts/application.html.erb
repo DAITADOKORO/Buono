@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:html_title) ? "Buono #{yield(:html_title)}" : "Buono" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="user-header">
+      <diV class="container">
+        <h3 class="nav navbar-nav navbar-left user-logo"><%= link_to image_tag("logo.jpg", height: 80), root_path %></h3>
+        <ul class="nav navbar-nav navbar-right">
+         <% if user_signed_in? %>
+          <li><%= link_to current_user.name, user_path(current_user.id) %></li>
+          <li>< link_to "行ってみたいお店", want_path(current_user.id) %></li>
+          <li>< link_to "また行きたいお店", repeat_path(current_user.id) %></li>
+          <li><%= link_to "マップ" %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+         <% else %>
+          <li><%= link_to "マップ" %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+         <% end %>
+         </ul>
+      </diV>
+    </header>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+    <% end %>
+    <div class="container">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="container">
+        <footer>
+          <p>©︎buono</p>
+        </footer>
+      </div>
+  </body>
+</html>
