@@ -1,0 +1,20 @@
+<% @hash.each do |rest| %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= p = rest[:name] %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-9">
+        <%= image_tag rest[:image_url][:shop_image1] , class: 'img-responsive center-block' %>
+      </div>
+      <div class="col-xs-3">
+        <li><%= rest[:opentime] %></li>
+        <li><% rest[:holiday] %></li>
+                <li><% rest[:category_s] %></li>
+        <li><%= rest[:pr][:pr_short] %></li>
+
+        <li><%= link_to '詳細はこちら', rest[:url] %></li>
+      </div>
+    </div>
+<% end %>
