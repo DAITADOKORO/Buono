@@ -14,3 +14,21 @@ E, [2020-01-11T19:54:20.631443 #8822] ERROR -- : HTTP ERROR: code=401 message=Un
 E, [2020-01-11T19:54:40.337121 #8822] ERROR -- : HTTP ERROR: code=401 message=Unauthorized
 E, [2020-01-11T20:31:38.031345 #8966] ERROR -- : HTTP ERROR: code=401 message=Unauthorized
 E, [2020-01-11T20:43:09.390938 #9008] ERROR -- : HTTP ERROR: code=401 message=Unauthorized
+E, [2020-01-12T12:26:10.243988 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T12:28:18.312297 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T12:28:42.143185 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T12:32:51.793430 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T12:34:26.480092 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T12:50:52.764017 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T13:41:19.528252 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T13:45:05.046621 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T13:48:54.792034 #9931] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T14:33:56.792928 #10371] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T15:06:39.910089 #10505] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T16:27:45.616987 #11345] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T16:27:54.663422 #11345] ERROR -- : HTTP ERROR: code=404 message=Not Found
+E, [2020-01-12T16:28:09.710055 #11345] ERROR -- : HTTP ERROR: code=404 message=Not Found
+E, [2020-01-12T16:34:28.686857 #11345] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T16:36:16.440636 #11345] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T16:43:03.228699 #11345] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-01-12T16:43:19.665593 #11345] ERROR -- : HTTP ERROR: code=400 message=Bad Request

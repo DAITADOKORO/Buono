@@ -1,2 +1,29 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<% @hash.each do |rest| %>
+    <div class="row">
+      <div class="col-xs-12">
+        <strong><%= p = rest[:name] %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <%= image_tag rest[:image_url][:shop_image1] , class: 'img-responsive center-block' %>
+      </div>
+      <div class="col-xs-9">
+        <li><%= rest[:opentime] %></li>
+        <li><% rest[:holiday] %></li>
+        <li><%= rest[:category] %></li>
+        <li><%= rest[:address] %></li>
+        <li><%= rest[:pr][:pr_long] %></li>
+        <li><%= link_to 'お得なクーポンはこちら', rest[:coupon_url][:pc] %></li>
+        <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
+      </div>
+    </div>
+<% end %>
+<% if @moments %>
+<%= @moments[0].title %>
+<%= image_tag @moments[0].urlToImage, :size => '300x200' %>
+<%= @moments[0].description %>
+<%= link_to '記事詳細へ飛ぶ', @moments[0].url %>
+<% else %>
+<h2>只今関連記事はございません。</h2>
+<% end %>

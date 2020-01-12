@@ -11,10 +11,9 @@
       <div class="col-xs-3">
         <li><%= rest[:opentime] %></li>
         <li><% rest[:holiday] %></li>
-                <li><% rest[:category_s] %></li>
         <li><%= rest[:pr][:pr_short] %></li>
-
-        <li><%= link_to '詳細はこちら', rest[:url] %></li>
+        <li><%= link_to '詳細はこちら', restaurant_path(rest[:id]) %></li>
+        <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
       </div>
     </div>
 <% end %>
