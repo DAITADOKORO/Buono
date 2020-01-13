@@ -18,6 +18,58 @@
         <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
       </div>
     </div>
+
+<h2>gmap</h2>
+
+<style>
+  #target {
+    width: 550px;
+    height: 400px;
+  }
+</style>
+<div id="target"></div>
+<ul id="info">
+  <li>お店の情報</li>
+</ul>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=
+
+
+  &callback=initMap" async defer></script>
+<script>
+  function initMap(){
+    'use strict';
+
+    var target = document.getElementById('target');
+    var map;
+    var tokyo = {lat: 35, lng: 135};
+    var marker;
+    var infoWindow;
+
+    map = new google.maps.Map(target, {
+      center: tokyo,
+      zoom: 9,
+      disableDefaultUI: true,
+      zoomControl: true
+    });
+      marker = new google.maps.Marker({
+      position: tokyo,
+      map: map
+    });
+    infoWindow = new google.maps.InfoWindow({
+      position: tokyo,
+      content: document.getElementById('info')
+    });
+
+    infoWindow.open(map);
+
+
+  }
+
+</script>
+
+
 <% end %>
 <% if @moments %>
 <%= @moments[0].title %>
@@ -27,3 +79,5 @@
 <% else %>
 <h2>只今関連記事はございません。</h2>
 <% end %>
+
+
