@@ -29,11 +29,15 @@
 </style>
 <div id="target"></div>
 <ul id="info">
-  <li>お店の情報</li>
+  <li><%= rest[:name] %></li>
+  <li><%= rest[:address] %></li>
+  <li><%= image_tag rest[:image_url][:shop_image1] , class: 'img-responsive center-block' %></li>
 </ul>
+
 
 <script
   src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=
+
 
 
   &callback=initMap" async defer></script>
@@ -43,22 +47,22 @@
 
     var target = document.getElementById('target');
     var map;
-    var tokyo = {lat: 35, lng: 135};
+    var shop = {lat: <%= rest[:latitude] %>, lng: <%= rest[:longitude] %>};
     var marker;
     var infoWindow;
 
     map = new google.maps.Map(target, {
-      center: tokyo,
-      zoom: 9,
+      center: shop,
+      zoom: 14,
       disableDefaultUI: true,
       zoomControl: true
     });
       marker = new google.maps.Marker({
-      position: tokyo,
+      position: shop,
       map: map
     });
     infoWindow = new google.maps.InfoWindow({
-      position: tokyo,
+      position: shop,
       content: document.getElementById('info')
     });
 
