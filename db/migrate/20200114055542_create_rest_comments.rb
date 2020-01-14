@@ -5,7 +5,6 @@ class CreateRestComments < ActiveRecord::Migration[5.2]
       t.integer :restaurant_id
       t.text :comment
 
-
       t.timestamps
     end
   end

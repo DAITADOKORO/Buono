@@ -1,4 +1,10 @@
 <% content_for(:html_title) { "店鋪詳細" } %>
+<div class="want_<%= @restaurant.id %>">
+  <%= render 'restaurants/want', restaurant: @restaurant %>
+</div>
+<div class="repeat_<%= @restaurant.id %>">
+<%= render 'restaurants/repeat', restaurant: @restaurant %>
+</div>
 
 <% @hash.each do |rest| %>
   <div class="row">
@@ -11,6 +17,9 @@
       <%= image_tag rest[:image_url][:shop_image1] , class: 'img-responsive center-block' %>
     </div>
     <div class="col-xs-7">
+
+
+
       <h3>営業時間</h3>
       <h4><%= rest[:opentime] %></h4>
       <h3>営業日</h3>
@@ -53,7 +62,7 @@
 
       map = new google.maps.Map(target, {
         center: shop,
-        zoom: 14,
+        zoom: 15,
         disableDefaultUI: true,
         zoomControl: true
       });
@@ -106,3 +115,6 @@
     </div>
     <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+
+
+

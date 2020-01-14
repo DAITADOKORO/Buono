@@ -1,0 +1,11 @@
+<% if restaurant.wanted_by?(current_user) %>
+  <%= link_to restaurant_wants_path(restaurant), method: :delete,remote: true do %>
+    <span class="glyphicon glyphicon-heart"></span>
+    <%= restaurant.wants.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to restaurant_wants_path(restaurant), method: :post, remote: true do %>
+    <span class="glyphicon glyphicon-heart-empty"></span>
+    <%= restaurant.wants.count %> いいね
+  <% end %>
+<% end %>

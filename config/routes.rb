@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'restaurants#index'
 
 namespace :admin do
@@ -36,6 +37,8 @@ devise_for :users, controllers: {
 resources :users, except:[:new, :create, :index]
 
 resources :restaurants, only:[:index, :show] do
+  resource :wants, only: [:create, :index, :show, :destroy]
+  resource :repeats, only: [:create, :index,:show,:destroy]
   resource :rest_comments, only:[:create, :show, :destroy]
   collection do
     post :search
