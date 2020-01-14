@@ -8,6 +8,10 @@ require 'news-api'
 
 class RestaurantsController < ApplicationController
   def index
+      newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
+      @ramens = newsapi.get_everything(q: URI.encode('ラーメン'))
+      @yakinikus = newsapi.get_everything(q: URI.encode('焼肉'))
+      @itarians = newsapi.get_everything(q: URI.encode('イタリアン'))
 
   end
 
@@ -104,8 +108,12 @@ class RestaurantsController < ApplicationController
     rescue StandardError => e
       logger.error(e.message)
     end
-      newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
-      @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]))
+
+    newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
+    @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]))
+
+
+
   end
 
 end
