@@ -108,12 +108,27 @@ class RestaurantsController < ApplicationController
     rescue StandardError => e
       logger.error(e.message)
     end
-
     newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
-    @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]))
 
 
 
+    @restaurant = Restaurant.find_by(shop_id: @hash[0][:id])
+    if @restaurant == nil
+      @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]))
+      @restaurant = Restaurant.new
+      @restaurant.name = @hash[0][:name]
+      @restaurant.shop_id = @hash[0][:id]
+      @restaurant.save
+    else
+      @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]))
+    end
+    @rest_comment = RestComment.new
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :shop_id)
   end
 
 end

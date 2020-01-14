@@ -1,5 +1,3 @@
 class Restaurant < ApplicationRecord
-  belongs_to :genre
-  belongs_to :admin
-  belongs_to :user
+  has_many :rest_comments, dependent: :destroy
 end

@@ -1,0 +1,5 @@
+<h2>コメント（<%= @restaurant.rest_comments.count %>件）</h2>
+<% @restaurant.rest_comments.each do |comment| %>
+  <%= comment.user.name %>
+  <%= comment.comment %>
+<% end %>

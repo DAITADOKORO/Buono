@@ -92,4 +92,17 @@
   <h2>只今関連記事はございません。</h2>
 <% end %>
 
+<h2>コメント（<%= @restaurant.rest_comments.count %>件）</h2>
+  <% @restaurant.rest_comments.first(2).each do |comment| %>
+  <%= comment.user.name %>
+  <%= comment.comment %>
+  <% end %>
 
+<%= form_for [@restaurant, @rest_comment] do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        </div>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   root 'restaurants#index'
-  get 'users/show'
-  get 'users/edit'
 
 namespace :admin do
   root 'users#index'
@@ -37,10 +35,11 @@ devise_for :users, controllers: {
 
 resources :users, except:[:new, :create, :index]
 
-resources :restaurants do
-    collection do
-      post :search
-    end
+resources :restaurants, only:[:index, :show] do
+  resource :rest_comments, only:[:create, :show, :destroy]
+  collection do
+    post :search
+  end
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

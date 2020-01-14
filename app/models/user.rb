@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name_kana, presence: true,format: {with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力してください'}
 
-  has_many :restaurants
+  has_many :rest_comments, dependent: :destroy
+
 
 end

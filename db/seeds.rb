@@ -27,14 +27,6 @@ Genre.create!(
    updated_at: "2019-06-09 05:58:57"
 )
 
-Restaurant.create!(
-   genre_id: 1,
-   item_name: 'とんこつラーメン',
-   item_text: 'これはとんこつラーメンです。',
-   created_at: "2019-06-09 05:58:56",
-   updated_at: "2019-06-09 05:58:57"
-)
-
 Want.create!(
    user_id: 1,
    restaurant_id: 1
