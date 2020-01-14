@@ -1,2 +1,6 @@
-<h1>Repeats#show</h1>
-<p>Find me in app/views/repeats/show.html.erb</p>
+<% @repeats.each do |t| %>
+  <li><%= t.restaurant.name %></li>
+  <li><%= t.restaurant.genre %></li>
+  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
+<% end %>

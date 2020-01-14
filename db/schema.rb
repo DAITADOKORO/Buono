@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 2020_01_14_085159) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.integer "genre_id"
     t.string "shop_id"
     t.string "name"
+    t.text "image"
+    t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

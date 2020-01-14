@@ -118,6 +118,8 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.new
       @restaurant.name = @hash[0][:name]
       @restaurant.shop_id = @hash[0][:id]
+      @restaurant.image = @hash[0][:image_url][:shop_image1]
+      @restaurant.genre = @hash[0][:category]
       @restaurant.save
     else
       @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]))
@@ -128,7 +130,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id)
+    params.require(:restaurant).permit(:name, :shop_id, :genre, :image)
   end
 
 end

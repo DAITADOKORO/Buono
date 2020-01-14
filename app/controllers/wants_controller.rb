@@ -3,6 +3,7 @@ class WantsController < ApplicationController
   end
 
   def show
+    @wants = current_user.wants
   end
 
   def create
