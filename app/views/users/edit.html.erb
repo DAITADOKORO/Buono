@@ -1,7 +1,7 @@
 <% content_for(:html_title) { "マイページ編集" } %>
 
 <div class="container">
-  <h1>登録情報編集</h1>
+  <h1><strong>登録情報編集</strong></h1>
       <%= form_for @user, :url => { :controller => :users, :action => :update } do |f| %>
         <% if @user.errors.any? %>
           <div id="error_explanation" class="alert alert-danger">

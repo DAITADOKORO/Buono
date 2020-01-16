@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'restaurants#index'
 
 namespace :admin do
@@ -34,6 +33,9 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
+resources :wants, only:[:index]
+resources :repeats, only:[:index]
+
 resources :users, except:[:new, :create, :index] do
   resource :wants, only:[:show]
   resource :repeats, only:[:show]
@@ -41,7 +43,7 @@ end
 
 resources :restaurants, only:[:index, :show] do
   resource :wants, only: [:create, :destroy]
-  resource :repeats, only: [:create,:destroy]
+  resource :repeats, only: [:create, :destroy]
   resource :rest_comments, only:[:create, :show, :destroy]
   collection do
     get :search

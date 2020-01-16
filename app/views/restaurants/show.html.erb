@@ -1,4 +1,4 @@
-<% content_for(:html_title) { "店鋪詳細" } %>
+<% content_for(:html_title) { "#{@restaurant.name}詳細" } %>
 <div class="want_<%= @restaurant.id %>">
   <%= render 'restaurants/want', restaurant: @restaurant %>
 </div>
@@ -17,9 +17,6 @@
       <%= image_tag rest[:image_url][:shop_image1], class: 'img-responsive center-block' %>
     </div>
     <div class="col-xs-7">
-
-
-
       <h3>営業時間</h3>
       <h4><%= rest[:opentime] %></h4>
       <h3>営業日</h3>

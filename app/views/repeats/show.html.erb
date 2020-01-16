@@ -1,6 +1,16 @@
-<% @repeats.each do |t| %>
-  <li><%= t.restaurant.name %></li>
-  <li><%= t.restaurant.genre %></li>
-  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
-  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-<% end %>
+<% content_for(:html_title) { "#{@user.name}さんの行ってみたいお店" } %>
+
+<div class="col-md-6 col-md-offset-3">
+  <div class='row'>
+    <% @repeats.each do |t| %>
+      <div class="col-xs-6 image_adjust">
+        <li><%= t.restaurant.name %></li>
+        <li><%= t.restaurant.genre %></li>
+        <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
+      </div>
+      <div class="col-xs-6 image_adjust">
+        <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+      </div>
+    <% end %>
+
+</div>

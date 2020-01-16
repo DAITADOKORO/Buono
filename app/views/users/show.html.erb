@@ -1,42 +1,50 @@
-<% content_for(:html_title) { "マイページ" } %>
-
+<% content_for(:html_title) { "#{@user.name}さんの個人ページ" } %>
 <div class="container">
   <div class="row">
-    <div class="col-xs-8 col-xs-offset-1">
-      <h1><strong>マイページ</strong></h1>
+    <div class="col-xs-6 col-xs-offset-1">
+      <h1><strong><%= @user.name %>さんの個人ページ</strong></h1>
       <%= link_to "編集する", edit_user_path(@user), data: {"turbolinks" => false}, class: "btn btn-primary" %>
       <%= link_to "パスワードを変更する", edit_user_registration_path, class:"btn btn-primary" %>
       <table class="table table-responsive table-bordered">
         <tbody>
-          <th>氏名</th>
+          <th class="gray">氏名</th>
           <th><%= @user.name %></th>
         </tbody>
         <tbody>
-          <th>カナ</th>
+          <th class="gray">カナ</th>
           <th><%= @user.name_kana %></th>
         </tbody>
         <tbody>
-          <th>メールアドレス</th>
+          <th class="gray">メールアドレス</th>
           <th><%= @user.email %></th>
         </tbody>
       </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-5 col-xs-offset-1">
+      <h3>行ってみたいお店</h3>
+      <% @wants.first(2).each do |t| %>
+        <div class="image_adjust">
+          <li><%= image_tag t.restaurant.image %></li>
+          <li><%= t.restaurant.name %></li>
+          <li><%= t.restaurant.genre %></li>
+          <li><%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %></li>
+        </div>
+      <% end %>
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to 'もっと見る', user_wants_path(@user) %>
+    </div>
+    <div class="col-xs-6">
+      <h3>また行きたいお店</h3>
+      <% @repeats.first(2).each do |t| %>
+        <div class="image_adjust">
+          <li><%= image_tag t.restaurant.image %></li>
+          <li><%= t.restaurant.name %></li>
+          <li><%= t.restaurant.genre %></li>
+          <li><%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %></li>
+        </div>
+      <% end %>
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to 'もっと見る', user_repeats_path(@user) %>
+    </div>
+  </div>
 </div>
-
-<% @wants.first(2).each do |t| %>
-  <li><%= t.restaurant.name %></li>
-  <li><%= t.restaurant.genre %></li>
-  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
-  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-<% end %>
-<%= link_to 'もっと見る', user_wants_path(@user) %>
-
-
-<% @repeats.first(2).each do |t| %>
-  <li><%= t.restaurant.name %></li>
-  <li><%= t.restaurant.genre %></li>
-  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
-  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-<% end %>
-<%= link_to 'もっと見る', user_repeats_path(@user) %>

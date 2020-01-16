@@ -1,90 +1,51 @@
 <% content_for(:html_title) { "トップページ" } %>
 
-<div class="col-md-10 col-md-offset-1">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <%= form_with url: search_restaurants_path, method: :get, local: true do |f| %>
-        <%= f.text_field :name, placeholder: "お店名を入力", class: 'form-control' %>
-        <%= f.text_field :freeword1, placeholder: "キーワード（ジャンルなど）", class: 'form-control' %>
-        <%= f.text_field :freeword2, placeholder: "キーワード（場所など）", class: 'form-control' %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2>最近のグルメ記事一覧</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <h3>ラーメン</h3>
+    <div class="col-md-9">
+      <h3>最近のグルメ記事一覧</h3>
       <% @ramens.first(3).each do |moment| %>
         <% if moment %>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %><br>
-              <%= image_tag moment.urlToImage, :size => '300x200' %>
-            </div>
+          <div class="col-xs-4">
+            <%= image_tag moment.urlToImage, :size => '240x180' %>
+            <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %>
           </div>
         <% else %>
           <h2>只今関連記事はございません。</h2>
         <% end %>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <h3>焼肉</h3>
-      <% @yakinikus.first(3).each do |moment| %>
-        <% if moment %>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %><br>
-              <%= image_tag moment.urlToImage, :size => '300x200' %>
-            </div>
-          </div>
-        <% else %>
-          <h2>只今関連記事はございません。</h2>
-        <% end %>
+    <div class="col-md-3">
+      <%= render 'side' %>
+    </div>
+    <div class="col-md-9">
+      <h3>他の人はこんなお店を検索しています</h3>
+      <% @random.each do |t| %>
+        <div class="col-xs-4">
+          <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id) %></li>
+          <li><%= t[:name] %></li>
+        </div>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <h3>イタリアン</h3>
-      <% @itarians.first(3).each do |moment| %>
-        <% if moment %>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %><br>
-              <%= image_tag moment.urlToImage, :size => '300x200' %>
-            </div>
-          </div>
-        <% else %>
-          <h2>只今関連記事はございません。</h2>
-        <% end %>
+    <div class="col-md-9">
+      <h3>行ってみたいお店TOP3</h3>
+      <% @wants.first(3).each do |t| %>
+        <div class="col-xs-4">
+          <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
+          <li><%= t.restaurant.name %></li>
+          <li><%= t.restaurant.genre %></li>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <h3>また行きたいお店TOP3</h3>
+      <% @repeats.first(3).each do |t| %>
+        <div class="col-xs-4">
+          <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
+          <li><%= t.restaurant.name %></li>
+          <li><%= t.restaurant.genre %></li>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
-<h3>他の人はこんなお店を検索しています</h3>
-<% @random.each do |t| %>
-  <%= link_to image_tag(t.image), restaurant_path(t.shop_id) %>
-  <%= t[:name] %>
-<% end %>
-
-
-<h3>行ってみたいお店TOP3</h3>
-<% @wants.first(3).each do |t| %>
-  <li><%= t.restaurant.name %></li>
-  <li><%= t.restaurant.genre %></li>
-  <li><%= image_tag t.restaurant.image %></li>
-  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-<% end %>
-
-<h3>また行きたいお店TOP3</h3>
-<% @repeats.first(3).each do |t| %>
-  <li><%= t.restaurant.name %></li>
-  <li><%= t.restaurant.genre %></li>
-  <li><%= image_tag t.restaurant.image %></li>
-  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-<% end %>

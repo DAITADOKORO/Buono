@@ -1,5 +1,21 @@
-<h2>コメント（<%= @restaurant.rest_comments.count %>件）</h2>
-<% @restaurant.rest_comments.each do |comment| %>
-  <%= comment.user.name %>
-  <%= comment.comment %>
-<% end %>
+<% content_for(:html_title) { "#{@restaurant.name} コメント" } %>
+<div class="container">
+  <h3><%= @restaurant.name %></h3>
+  <h3>みんなのコメント（<%= @restaurant.rest_comments.count %>件）</h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>氏名</th>
+        <th>コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restaurant.rest_comments.each do |comment| %>
+       <tr>
+        <td><%= link_to comment.user.name, user_path(comment.user_id) %></td>
+        <td><%= comment.comment %></td>
+       </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

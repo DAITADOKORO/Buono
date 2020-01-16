@@ -15,3 +15,26 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: 'Yu Gothic Medium', Meiryo, 'MS PGothic', verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+li {
+  list-style: none;
+}
+
+
+.image_adjust {
+  padding: 10px;
+}
+
+.gray {
+  background-color: #c0c0c0;
+}
