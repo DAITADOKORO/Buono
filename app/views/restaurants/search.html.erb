@@ -1,21 +1,21 @@
 <% content_for(:html_title) { "検索結果" } %>
 
-<% @hash.each do |rest| %>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= p = rest[:name] %>
+<div class="col-md-10 col-md-offset-1">
+  <% @hash.each do |rest| %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= rest[:name] %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-9">
-        <%= image_tag rest[:image_url][:shop_image1] , class: 'img-responsive center-block' %>
+      <div class="row">
+        <div class="col-xs-7">
+          <%= image_tag rest[:image_url][:shop_image1], :size => '200x200', class: 'img-responsive center-block' %>
+        </div>
+        <div class="col-xs-5">
+          <li><%= rest[:opentime] %></li>
+          <li><%= rest[:pr][:pr_short] %></li>
+          <li><%= link_to '詳細はこちら', restaurant_path(rest[:id]) %></li>
+          <li><%= link_to 'ぐるなびの詳細ページはこちら', rest[:url] %></li>
+        </div>
       </div>
-      <div class="col-xs-3">
-        <li><%= rest[:opentime] %></li>
-        <li><% rest[:holiday] %></li>
-        <li><%= rest[:pr][:pr_short] %></li>
-        <li><%= link_to '詳細はこちら', restaurant_path(rest[:id]) %></li>
-        <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
-      </div>
-    </div>
-<% end %>
+  <% end %>

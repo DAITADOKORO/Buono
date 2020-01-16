@@ -3,7 +3,8 @@ class RepeatsController < ApplicationController
   end
 
   def show
-    @repeats = current_user.repeats
+    @user = User.find(params[:user_id])
+    @repeats = @user.repeats
   end
 
   def create

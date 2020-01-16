@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @wants = @user.wants
+    @repeats = @user.wants
   end
 
 

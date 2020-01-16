@@ -12,7 +12,9 @@ class RestaurantsController < ApplicationController
       @ramens = newsapi.get_everything(q: URI.encode('ラーメン'))
       @yakinikus = newsapi.get_everything(q: URI.encode('焼肉'))
       @itarians = newsapi.get_everything(q: URI.encode('イタリアン'))
-
+      @wants = Want.all
+      @repeats = Repeat.all
+      @random = Restaurant.order("RANDOM()").limit(3)
   end
 
  def search

@@ -16,8 +16,8 @@
         <ul class="nav navbar-nav navbar-right">
          <% if user_signed_in? %>
           <li><%= link_to current_user.name, user_path(current_user.id) %></li>
-          <li><%= link_to "行ってみたいお店", restaurant_wants_path(current_user.id) %></li>
-          <li><%= link_to "また行きたいお店", restaurant_repeats_path(current_user.id) %></li>
+          <li><%= link_to "行ってみたいお店", user_wants_path(current_user.id) %></li>
+          <li><%= link_to "また行きたいお店", user_repeats_path(current_user.id) %></li>
           <li><%= link_to "マップ" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
          <% else %>

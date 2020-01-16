@@ -23,3 +23,20 @@
     </div>
   </div>
 </div>
+
+<% @wants.first(2).each do |t| %>
+  <li><%= t.restaurant.name %></li>
+  <li><%= t.restaurant.genre %></li>
+  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
+<% end %>
+<%= link_to 'もっと見る', user_wants_path(@user) %>
+
+
+<% @repeats.first(2).each do |t| %>
+  <li><%= t.restaurant.name %></li>
+  <li><%= t.restaurant.genre %></li>
+  <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+  <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
+<% end %>
+<%= link_to 'もっと見る', user_repeats_path(@user) %>

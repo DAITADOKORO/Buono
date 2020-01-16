@@ -34,13 +34,17 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-resources :users, except:[:new, :create, :index]
+resources :users, except:[:new, :create, :index] do
+  resource :wants, only:[:show]
+  resource :repeats, only:[:show]
+end
 
 resources :restaurants, only:[:index, :show] do
-  resource :wants, only: [:create, :index, :show, :destroy]
-  resource :repeats, only: [:create, :index,:show,:destroy]
+  resource :wants, only: [:create, :destroy]
+  resource :repeats, only: [:create,:destroy]
   resource :rest_comments, only:[:create, :show, :destroy]
   collection do
+    get :search
     post :search
   end
 end
