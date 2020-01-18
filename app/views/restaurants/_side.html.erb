@@ -7,13 +7,23 @@
   <% end %>
 </div>
 
-<div class="tag">
-<% tag_cloud(tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-  <%= link_to tag.name, tag_cloud_restaurants_path(:tag_name => tag.name), :class => css_class %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">タグ一覧</h5>
+  </div>
+  <div class="tag panel-body">
+    <% tag_cloud(tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, tag_cloud_restaurants_path(:tag_name => tag.name), :class => css_class %>
+    <% end %>
+  </div>
 </div>
 
-<div class="rank">
-  <%= link_to '行ってみたいランキング', wants_path %>
-  <%= link_to 'また行きたいランキング', repeats_path %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">ランキング</h5>
+  </div>
+  <div class="panel-body">
+    <h5><%= link_to '行ってみたいランキング', wants_path %></h5><br>
+    <h5><%= link_to 'また行きたいランキング', repeats_path %></h5>
+  </div>
 </div>

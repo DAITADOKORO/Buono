@@ -1,13 +1,13 @@
 <% if restaurant.repeated_by?(current_user) %>
-  <%= link_to restaurant_repeats_path(restaurant), method: :delete, remote: true do %>
+  <%= link_to restaurant_repeats_path(restaurant), method: :delete, remote: true, class: 'btn btn-lg btn-primary' do %>
     また行きたい！
-    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    <i class="fas fa-bookmark"></i>
     <%= restaurant.repeats.count %>
   <% end %>
 <% else %>
-  <%= link_to restaurant_repeats_path(restaurant), method: :post,remote: true do %>
+  <%= link_to restaurant_repeats_path(restaurant), method: :post, remote: true, class: 'btn btn-lg btn-default' do %>
     また行きたい！
-    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+    <i class="far fa-bookmark" ></i>
     <%= restaurant.repeats.count %>
   <% end %>
 <% end %>

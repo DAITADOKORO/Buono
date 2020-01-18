@@ -9,9 +9,10 @@ require 'news-api'
 class RestaurantsController < ApplicationController
   def index
     newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
-    @ramens = newsapi.get_everything(q: URI.encode('ラーメン'))
-    @yakinikus = newsapi.get_everything(q: URI.encode('焼肉'))
-    @itarians = newsapi.get_everything(q: URI.encode('イタリアン'))
+
+
+
+    @ramens = newsapi.get_everything(q: URI.encode('グルメ　ラーメン　選'),sources: '',language: 'jp', sortBy: 'popularity')
     @wants = Want.all
     @repeats = Repeat.all
     @random = Restaurant.order("RANDOM()").limit(3)
@@ -129,6 +130,7 @@ class RestaurantsController < ApplicationController
       @restaurant.shop_id = @hash[0][:id]
       @restaurant.image = @hash[0][:image_url][:shop_image1]
       @restaurant.tag_list = @hash[0][:category]
+      @restaurant.area_list = @hash[0][:prefname]
       @restaurant.save
     else
       @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]))
@@ -139,7 +141,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :area_list)
   end
 
 end

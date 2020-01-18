@@ -15,6 +15,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 
 body {
@@ -35,9 +37,48 @@ li {
   padding: 10px;
 }
 
+.float {
+  float: right;
+  padding-left: 10px;
+}
+
+.clear {
+  clear: right;
+}
+
 .gray {
   background-color: #c0c0c0;
 }
+
+.search {
+  padding-bottom: 10px;
+}
+
+.tag {
+  height: 200px;
+  overflow: auto;
+}
+
+.media-left {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+
+.media-body {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+
 
 .css1 { font-size: 1.0em; }
 .css2 { font-size: 1.2em; }

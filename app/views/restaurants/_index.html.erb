@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <h3>最近のグルメ記事一覧</h3>
+  <% ramens.first(3).each do |moment| %>
+    <% if moment %>
+      <div class="col-xs-4">
+        <%= image_tag moment.urlToImage, :size => '240x180' %>
+        <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %>
+      </div>
+    <% else %>
+      <h2>只今関連記事はございません。</h2>
+    <% end %>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <h3>他の人はこんなお店を検索しています</h3>
+  <% random.each do |t| %>
+    <div class="col-xs-4">
+      <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id) %></li>
+      <li><%= t[:name] %></li>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <h3>行ってみたいお店TOP3</h3>
+  <% wants.first(3).each do |t| %>
+    <div class="col-xs-4">
+      <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
+      <li><%= t.restaurant.name %></li>
+      <li><%= t.restaurant.tag_list %></li>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <h3>また行きたいお店TOP3</h3>
+  <% repeats.first(3).each do |t| %>
+    <div class="col-xs-4">
+      <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
+      <li><%= t.restaurant.name %></li>
+      <li><%= t.restaurant.tag_list %></li>
+    </div>
+  <% end %>
+</div>

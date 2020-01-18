@@ -1,16 +1,25 @@
 <% content_for(:html_title) { "#{@user.name}さんの行ってみたいお店" } %>
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-offset-1 col-md-10 col-md-offset-1">
   <div class='row'>
     <% @wants.each do |t| %>
-      <div class="col-xs-6 image_adjust">
+      <div class="col-xs-4 image_adjust">
         <li><%= t.restaurant.name %></li>
         <li><%= t.restaurant.tag_list %></li>
         <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
       </div>
-      <div class="col-xs-6 image_adjust">
+      <div class="col-xs-5 image_adjust">
         <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
       </div>
-    <% end %>
 
+    <div class="col-xs-3">
+      <div class="want_<%= t.restaurant.id %>">
+        <%= render 'restaurants/want', restaurant: t.restaurant %>
+      </div>
+      <div class="repeat_<%= t.restaurant.id %>">
+        <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+      </div>
+    </div>
+        <% end %>
+  </div>
 </div>

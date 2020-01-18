@@ -1,0 +1,9 @@
+<% restaurants.each do |t| %>
+  <div class="col-xs-5 image_adjust">
+    <li><%= t.name %></li>
+    <%= link_to '詳細はこちら',restaurant_path(t.shop_id) %>
+  </div>
+  <div class="col-xs-7 image_adjust">
+    <li><%= image_tag t.image , class: 'img-responsive center-block' %></li>
+  </div>
+<% end %>

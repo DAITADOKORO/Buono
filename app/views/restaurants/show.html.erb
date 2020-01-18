@@ -1,32 +1,33 @@
 <% content_for(:html_title) { "#{@restaurant.name}詳細" } %>
-<div class="want_<%= @restaurant.id %>">
-  <%= render 'restaurants/want', restaurant: @restaurant %>
-</div>
-<div class="repeat_<%= @restaurant.id %>">
-<%= render 'restaurants/repeat', restaurant: @restaurant %>
-</div>
 
 <% @hash.each do |rest| %>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
       <h2><strong><%= rest[:name] %></strong></h2>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-5">
-      <%= image_tag rest[:image_url][:shop_image1], class: 'img-responsive center-block' %>
+      <br>
+      <%= image_tag rest[:image_url][:shop_image1],:size =>'320x480',class: 'img-responsive center-block' %>
     </div>
     <div class="col-xs-7">
-      <h3>営業時間</h3>
-      <h4><%= rest[:opentime] %></h4>
-      <h3>営業日</h3>
-      <h4><% rest[:holiday] %></h4>
-      <h3>カテゴリ</h3>
-      <h4><%= rest[:category] %></h4>
-      <h3>紹介文</h3>
-      <h4><%= rest[:pr][:pr_long] %></h4>
-      <li><%= link_to 'お得なクーポンはこちら', rest[:coupon_url][:pc] %></li>
-      <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
+      <div class="repeat_<%= @restaurant.id %> float">
+        <%= render 'restaurants/repeat', restaurant: @restaurant %>
+      </div>
+      <div class="want_<%= @restaurant.id %> float">
+        <%= render 'restaurants/want', restaurant: @restaurant %>
+      </div>
+      <div class="clear">
+        <h3>営業時間</h3>
+        <h4><%= rest[:opentime] %></h4>
+        <h3>カテゴリ</h3>
+        <h4><%= rest[:category] %></h4>
+        <h3>紹介文</h3>
+        <h4><%= rest[:pr][:pr_long] %></h4>
+        <li><%= link_to 'お得なクーポンはこちら', rest[:coupon_url][:pc] %></li>
+        <li><%= link_to 'ぐるなびの詳細ページへ', rest[:url] %></li>
+      </div>
     </div>
   </div>
 
@@ -99,18 +100,29 @@
 <% end %>
 
 <h2>コメント（<%= @restaurant.rest_comments.count %>件）</h2>
-  <% @restaurant.rest_comments.first(2).each do |comment| %>
-  <%= comment.user.name %>
-  <%= comment.comment %>
-  <% end %>
-
-<%= form_for [@restaurant, @rest_comment] do |f| %>
-    <div class="row">
-        <div class="col-sm-12">
-            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+  <div class="row">
+    <div class="col-xs-7">
+      <% @restaurant.rest_comments.first(2).each do |comment| %>
+        <div class="media">
+          <div class="media-left">
+            <%= comment.user.name %>
+          </div>
+          <div class="media-body">
+            <%= comment.comment %>
+          </div>
         </div>
+      <% end %>
+      <%= link_to 'もっとコメントを見る', restaurant_rest_comments_path(@restaurant.id), class: "btn btn-base-1 mt-20 pull-right" %>
     </div>
-    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+  </div>
+<br>
+<%= form_for [@restaurant, @rest_comment] do |f| %>
+  <div class="row">
+    <div class="col-sm-7">
+        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    </div>
+  </div>
 <% end %>
 
 

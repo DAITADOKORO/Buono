@@ -73,7 +73,7 @@ gem "refile-mini_magick"
 gem 'paranoia'
 gem 'news-api'
 gem 'acts-as-taggable-on'
-
+gem 'font-awesome-sass', '~> 5.12.0'
 
 group :production do
   gem 'mysql2'

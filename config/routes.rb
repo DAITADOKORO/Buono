@@ -33,8 +33,17 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-resources :wants, only:[:index]
-resources :repeats, only:[:index]
+resources :wants, only:[:index] do
+  collection do
+    get :tag_cloud
+  end
+end
+
+resources :repeats, only:[:index] do
+  collection do
+    get :tag_cloud
+  end
+end
 
 resources :users, except:[:new, :create, :index] do
   resource :wants, only:[:show]
