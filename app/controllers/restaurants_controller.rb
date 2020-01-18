@@ -8,16 +8,23 @@ require 'news-api'
 
 class RestaurantsController < ApplicationController
   def index
-      newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
-      @ramens = newsapi.get_everything(q: URI.encode('ラーメン'))
-      @yakinikus = newsapi.get_everything(q: URI.encode('焼肉'))
-      @itarians = newsapi.get_everything(q: URI.encode('イタリアン'))
-      @wants = Want.all
-      @repeats = Repeat.all
-      @random = Restaurant.order("RANDOM()").limit(3)
+    newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
+    @ramens = newsapi.get_everything(q: URI.encode('ラーメン'))
+    @yakinikus = newsapi.get_everything(q: URI.encode('焼肉'))
+    @itarians = newsapi.get_everything(q: URI.encode('イタリアン'))
+    @wants = Want.all
+    @repeats = Repeat.all
+    @random = Restaurant.order("RANDOM()").limit(3)
+    @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
   end
 
- def search
+  def tag_cloud
+    @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
+    @restaurants = Restaurant.tagged_with(params[:tag_name])
+  end
+
+
+  def search
     freeword = %W[#{params[:freeword1]} #{params[:freeword2]}].join(',')
     hairetu = { keyid: Rails.application.credentials.grunavi[:api_key],
                 name: params[:name],
@@ -121,7 +128,7 @@ class RestaurantsController < ApplicationController
       @restaurant.name = @hash[0][:name]
       @restaurant.shop_id = @hash[0][:id]
       @restaurant.image = @hash[0][:image_url][:shop_image1]
-      @restaurant.genre = @hash[0][:category]
+      @restaurant.tag_list = @hash[0][:category]
       @restaurant.save
     else
       @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]))
@@ -132,7 +139,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :genre, :image)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image)
   end
 
 end

@@ -4,8 +4,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.string :shop_id
       t.string :name
       t.text :image
-      t.string :genre
-
+      t.string :tag_list
       t.timestamps
     end
   end

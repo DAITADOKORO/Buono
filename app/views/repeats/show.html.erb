@@ -5,7 +5,7 @@
     <% @repeats.each do |t| %>
       <div class="col-xs-6 image_adjust">
         <li><%= t.restaurant.name %></li>
-        <li><%= t.restaurant.genre %></li>
+        <li><%= t.restaurant.tag_list %></li>
         <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
       </div>
       <div class="col-xs-6 image_adjust">

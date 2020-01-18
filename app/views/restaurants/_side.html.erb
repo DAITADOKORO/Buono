@@ -7,7 +7,10 @@
   <% end %>
 </div>
 
-<div class="genre">
+<div class="tag">
+<% tag_cloud(tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <%= link_to tag.name, tag_cloud_restaurants_path(:tag_name => tag.name), :class => css_class %>
+<% end %>
 </div>
 
 <div class="rank">

@@ -1,4 +1,5 @@
 class Restaurant < ApplicationRecord
+  acts_as_taggable #tag用記述
   has_many :rest_comments, dependent: :destroy
   has_many :wants, dependent: :destroy
   def wanted_by?(user)

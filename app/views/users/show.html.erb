@@ -28,7 +28,7 @@
         <div class="image_adjust">
           <li><%= image_tag t.restaurant.image %></li>
           <li><%= t.restaurant.name %></li>
-          <li><%= t.restaurant.genre %></li>
+          <li><%= t.restaurant.tag_list %></li>
           <li><%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %></li>
         </div>
       <% end %>
@@ -40,7 +40,7 @@
         <div class="image_adjust">
           <li><%= image_tag t.restaurant.image %></li>
           <li><%= t.restaurant.name %></li>
-          <li><%= t.restaurant.genre %></li>
+          <li><%= t.restaurant.tag_list %></li>
           <li><%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %></li>
         </div>
       <% end %>

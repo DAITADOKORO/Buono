@@ -72,6 +72,8 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'paranoia'
 gem 'news-api'
+gem 'acts-as-taggable-on'
+
 
 group :production do
   gem 'mysql2'

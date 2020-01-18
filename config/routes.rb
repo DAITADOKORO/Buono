@@ -48,6 +48,7 @@ resources :restaurants, only:[:index, :show] do
   collection do
     get :search
     post :search
+    get :tag_cloud
   end
 end
 
