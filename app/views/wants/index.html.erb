@@ -3,26 +3,29 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <% @wants.each do |t| %>
-        <div class='row'>
-          <div class="col-xs-4 image_adjust">
-            <li><%= t.restaurant.name %></li>
-            <li><%= t.restaurant.tag_list %></li>
-            <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-          </div>
-          <div class="col-xs-4 image_adjust">
-            <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
-          </div>
-          <div class="col-xs-4">
-            <div class="want_<%= t.restaurant.id %> float under-space">
-              <%= render 'restaurants/want', restaurant: t.restaurant %>
+      <div class="want-list jscroll">
+        <% @wants.each do |t| %>
+          <div class='row'>
+            <div class="col-xs-4 image_adjust">
+              <li><%= t.restaurant.name %></li>
+              <li><%= t.restaurant.tag_list %></li>
+              <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
             </div>
-            <div class="repeat_<%= t.restaurant.id %> float">
-              <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+            <div class="col-xs-4 image_adjust">
+              <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+            </div>
+            <div class="col-xs-4">
+              <div class="want_<%= t.restaurant.id %> float under-space">
+                <%= render 'restaurants/want', restaurant: t.restaurant %>
+              </div>
+              <div class="repeat_<%= t.restaurant.id %> float">
+                <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+        <%= paginate @wants %>
+      </div>
     </div>
     <div class="col-md-3">
       <div class="panel panel-default">
@@ -37,7 +40,18 @@
       </div>
     </div>
   </div>
-  <%= paginate @wants %>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+<script>
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.want-list',
+            nextSelector: 'span.next:last a'
+          });
+    }
+});
+</script>
 
