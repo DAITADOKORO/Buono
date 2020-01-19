@@ -14,7 +14,7 @@
             <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
           </div>
           <div class="col-xs-4">
-            <div class="repeat_<%= t.restaurant.id %> float">
+            <div class="repeat_<%= t.restaurant.id %> float under-space">
               <%= render 'restaurants/repeat', restaurant: t.restaurant %>
             </div>
             <div class="want_<%= t.restaurant.id %> float">
