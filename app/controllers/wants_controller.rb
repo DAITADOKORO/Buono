@@ -1,6 +1,6 @@
 class WantsController < ApplicationController
   def index
-    @wants = Want.group(:restaurant_id).order("count(restaurant_id) desc")
+    @wants = Want.group(:restaurant_id).order("count(restaurant_id) desc").page(params[:page]).per(10)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
   end
 
