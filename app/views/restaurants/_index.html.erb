@@ -4,7 +4,7 @@
     <% if moment %>
       <div class="col-xs-4">
         <%= image_tag moment.urlToImage, :size => '240x180' %>
-        <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url %>
+        <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url, target: :_blank, class: "underline" %>
       </div>
     <% else %>
       <h2>只今関連記事はございません。</h2>

@@ -29,7 +29,7 @@
         <div class="panel-heading">
           <h5 class="panel-title">ジャンルで指定する</h5>
         </div>
-        <div class="panel-body">
+        <div class="tag panel-body">
           <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
             <%= link_to tag.name, tag_cloud_repeats_path(:tag_name => tag.name), :class => css_class %>
           <% end %>
