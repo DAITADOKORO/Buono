@@ -13,11 +13,11 @@
       </div>
 
     <div class="col-xs-3">
-      <div class="want_<%= t.restaurant.id %>">
-        <%= render 'restaurants/want', restaurant: t.restaurant %>
-      </div>
       <div class="repeat_<%= t.restaurant.id %>">
         <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+      </div>
+      <div class="want_<%= t.restaurant.id %>">
+        <%= render 'restaurants/want', restaurant: t.restaurant %>
       </div>
     </div>
         <% end %>
