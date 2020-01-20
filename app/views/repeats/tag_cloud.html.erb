@@ -1,6 +1,7 @@
 <% content_for(:html_title) { "また行きたいランキング" } %>
 
 <div class="col-md-9">
+  <h2>また行きたいランキング：<%= params[:tag_name] %></h2>
   <div class="page jscroll">
     <% @repeats.each do |t| %>
       <div class='row'>

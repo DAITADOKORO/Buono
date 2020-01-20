@@ -1,4 +1,6 @@
 class RepeatsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @repeats = Repeat.group(:restaurant_id).order("count(restaurant_id) desc").page(params[:page]).per(10)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')

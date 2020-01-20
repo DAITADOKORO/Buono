@@ -11,9 +11,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
-
-      t.string   :name
-      t.string   :name_kana
       t.datetime :deleted_at
 
 

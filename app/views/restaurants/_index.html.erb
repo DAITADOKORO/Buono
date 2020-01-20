@@ -3,7 +3,11 @@
   <% ramens.first(3).each do |moment| %>
     <% if moment %>
       <div class="col-xs-4">
-        <%= image_tag moment.urlToImage, :size => '240x180' %>
+        <% if moment.urlToImage %>
+          <%= image_tag moment.urlToImage, :size => '240x180' %>
+        <% else %>
+          <%= image_tag 'no_image.png', :size => '240x180' %>
+        <% end %>
         <%= moment.title %><%= link_to '記事詳細へ飛ぶ', moment.url, target: :_blank, class: "underline" %>
       </div>
     <% else %>

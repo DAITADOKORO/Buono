@@ -1,17 +1,10 @@
 <% content_for(:html_title) { "マイページ編集" } %>
 
 <div class="container">
-  <h1><strong>登録情報編集</strong></h1>
+  <h2><strong>登録情報編集</strong></h2>
       <%= form_for @user, :url => { :controller => :users, :action => :update } do |f| %>
         <% if @user.errors.any? %>
-          <div id="error_explanation" class="alert alert-danger">
-            <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3>
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render 'shared/errors', object: f.object %>
         <% end %>
 
         <h3>氏名　　　　　　　　<%= f.text_field :name %></h3>

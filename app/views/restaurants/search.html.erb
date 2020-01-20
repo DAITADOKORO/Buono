@@ -1,19 +1,25 @@
 <% content_for(:html_title) { "検索結果" } %>
 
 <div class="col-md-10 col-md-offset-1">
-  <% @hash.each do |rest| %>
-    <div class="row">
-      <div class="col-md-3">
-        <%= rest[:name] %>
+  <% if @hash %>
+    <% @hash.each do |rest| %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= rest[:name] %>
+        </div>
+        <div class="col-xs-4 image_adjust">
+          <%= image_tag rest[:image_url][:shop_image1], :size => '200x200', class: 'img-responsive center-block' %>
+        </div>
+        <div class="col-xs-5">
+          <li><%= rest[:opentime] %></li>
+          <li><%= rest[:pr][:pr_short] %></li>
+          <li><%= link_to '詳細はこちら', restaurant_path(rest[:id]) %></li>
+          <li><%= link_to 'ぐるなびの詳細ページはこちら', rest[:url] %></li>
+        </div>
       </div>
-      <div class="col-xs-4 image_adjust">
-        <%= image_tag rest[:image_url][:shop_image1], :size => '200x200', class: 'img-responsive center-block' %>
-      </div>
-      <div class="col-xs-5">
-        <li><%= rest[:opentime] %></li>
-        <li><%= rest[:pr][:pr_short] %></li>
-        <li><%= link_to '詳細はこちら', restaurant_path(rest[:id]) %></li>
-        <li><%= link_to 'ぐるなびの詳細ページはこちら', rest[:url] %></li>
-      </div>
-    </div>
+    <% end %>
+  <% else %>
+    <h2>申し訳ございません...</h2>
+      <h4><%= params[:name] %><%= params[:freeword1] %><%= params[:freeword2] %>の検索結果に一致するものはありませんでした。</h4>
+      <h4>別の単語でご検索ください。</h4>
   <% end %>

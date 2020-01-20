@@ -98,7 +98,6 @@ nav.pagination {
 }
 
 .balloon5 .nameicon {
-  float: left;
   margin-right: -90px;
   width: 80px;
   border-radius: 12px;
@@ -118,6 +117,7 @@ nav.pagination {
 }
 
 .says {
+  float: left;
   display: inline-block;
   position: relative;
   margin: 5px 0 0 105px;
@@ -130,10 +130,12 @@ nav.pagination {
   content: "";
   display: inline-block;
   position: absolute;
-  top: 18px;
-  left: -24px;
-  border: 12px solid transparent;
-  border-right: 12px solid #d7ebfe;
+  top: 3px;
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #d7ebfe;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
 }
 
 .says p {

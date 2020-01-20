@@ -3,12 +3,15 @@ class RestCommentsController < ApplicationController
     restaurant = Restaurant.find(params[:restaurant_id])
     comment = current_user.rest_comments.new(rest_comment_params)
     comment.restaurant_id = restaurant.id
-    comment.save
-    redirect_to restaurant_rest_comments_path(restaurant)
+    if comment.save
+      redirect_to restaurant_rest_comments_path(restaurant)
+    else
+      @restaurant = Restaurant.find(params[:restaurant_id])
+      render :show
+   end
   end
   def show
     @restaurant = Restaurant.find(params[:restaurant_id])
-
   end
 
   private

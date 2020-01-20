@@ -7,6 +7,8 @@ require 'active_support/core_ext'
 require 'news-api'
 
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
   def index
     newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
 
@@ -27,7 +29,7 @@ class RestaurantsController < ApplicationController
 
   def search
     freeword = %W[#{params[:freeword1]} #{params[:freeword2]}].join(',')
-    hairetu = { keyid: Rails.application.credentials.grunavi[:api_key],
+    array = { keyid: Rails.application.credentials.grunavi[:api_key],
                 name: params[:name],
                 freeword: freeword }
 
@@ -37,7 +39,7 @@ class RestaurantsController < ApplicationController
 
     # key = ENV['GNAVI_API_KEY']
     # key = 'eeaec53f40fbe0b0f103d3dc86b1d94b'
-    params = URI.encode_www_form(hairetu)
+    params = URI.encode_www_form(array)
 
     uri = URI.parse("https://api.gnavi.co.jp/RestSearchAPI/v3/?#{params}")
 
@@ -75,7 +77,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    hairetu = { keyid: Rails.application.credentials.grunavi[:api_key],
+    array = { keyid: Rails.application.credentials.grunavi[:api_key],
                 id: params[:id] }
 
     # attr_accessor :freeword
@@ -83,7 +85,7 @@ class RestaurantsController < ApplicationController
 
     # key = ENV['GNAVI_API_KEY']
     # key = 'eeaec53f40fbe0b0f103d3dc86b1d94b'
-    params = URI.encode_www_form(hairetu)
+    params = URI.encode_www_form(array)
 
     uri = URI.parse("https://api.gnavi.co.jp/RestSearchAPI/v3/?#{params}")
 
@@ -120,11 +122,9 @@ class RestaurantsController < ApplicationController
     end
     newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
 
-
-
     @restaurant = Restaurant.find_by(shop_id: @hash[0][:id])
     if @restaurant == nil
-      @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]))
+      @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]),language: 'jp', sortBy: 'popularity')
       @restaurant = Restaurant.new
       @restaurant.name = @hash[0][:name]
       @restaurant.shop_id = @hash[0][:id]
@@ -133,7 +133,7 @@ class RestaurantsController < ApplicationController
       @restaurant.area_list = @hash[0][:prefname]
       @restaurant.save
     else
-      @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]))
+      @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]),language: 'jp', sortBy: 'popularity')
     end
     @rest_comment = RestComment.new
   end

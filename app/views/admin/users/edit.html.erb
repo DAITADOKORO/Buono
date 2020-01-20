@@ -5,14 +5,7 @@
     <h3>会員ID  <%= @user.id %></h3>
       <%= form_for @user, :url => { :controller => :users, :action => :update } do |f| %>
         <% if @user.errors.any? %>
-          <div id="error_explanation" class="alert alert-danger">
-            <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3>
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render 'shared/errors', object: @restaurant.object %>
         <% end %>
         <h3>氏名　　　　　　　　<%= f.text_field :name %></h3>
         <h3>フリガナ　　　　　　<%= f.text_field :name_kana %></h3>

@@ -87,7 +87,11 @@
     <% @moments.first(1).each do |moment| %>
       <div class="col-xs-4">
         <%= moment.title %><br>
-        <%= image_tag moment.urlToImage, :size => '300x200' %>
+        <% if moment.urlToImage %>
+          <%= image_tag moment.urlToImage, :size => '300x200' %>
+        <% else %>
+          <%= image_tag 'no_image.png', :size => '300x200' %>
+        <% end %>
       </div>
       <div class="col-xs-8">
         <%= moment.description %>
@@ -119,6 +123,7 @@
   </div>
 <br>
 <%= form_for [@restaurant, @rest_comment] do |f| %>
+<%= render 'shared/errors', object: f.object %>
   <div class="row">
     <div class="col-sm-7">
         <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>

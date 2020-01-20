@@ -1,6 +1,7 @@
-<% content_for(:html_title) { "また行きたいランキング" } %>
+<% content_for(:html_title) { "行ってみたいランキング" } %>
 
 <div class="col-md-9">
+  <h2>行ってみたいランキング：<%= params[:tag_name] %></h2>
   <div class="page jscroll">
     <% @wants.each do |t| %>
       <div class='row'>
