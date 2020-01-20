@@ -32,6 +32,15 @@ li {
   list-style: none;
 }
 
+nav.pagination {
+  display: none;
+}
+.page a{
+  color: white;
+}
+.page .current {
+  color: white;
+}
 
 .image_adjust {
   padding: 10px;
@@ -59,28 +68,8 @@ li {
   overflow: auto;
 }
 
-.media-left {
-  padding: 0.5em 1em;
-  margin: 2em 0;
-  font-weight: bold;
-  color: #6091d3;/*文字色*/
-  background: #FFF;
-  border: solid 3px #6091d3;/*線*/
-  border-radius: 10px;/*角の丸み*/
-}
-
 .under-space {
   margin-bottom: 10px;
-}
-
-.media-body {
-  padding: 0.5em 1em;
-  margin: 2em 0;
-  font-weight: bold;
-  color: #6091d3;/*文字色*/
-  background: #FFF;
-  border: solid 3px #6091d3;/*線*/
-  border-radius: 10px;/*角の丸み*/
 }
 
 .underline {
@@ -91,3 +80,53 @@ li {
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
+
+.balloon5 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.balloon5 .nameicon {
+  float: left;
+  margin-right: -90px;
+  width: 80px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.balloon5 .nameicon p{
+  text-align: center;
+  width: 100%;
+  height: auto;
+  border: solid 3px #d7ebfe;
+  border-radius: 50%;
+}
+
+.balloon5 .chatting {
+  width: 100%;
+}
+
+.says {
+  display: inline-block;
+  position: relative;
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #d7ebfe;
+}
+
+.says p {
+  margin: 0;
+  padding: 0;
+}

@@ -103,12 +103,14 @@
   <div class="row">
     <div class="col-xs-7">
       <% @restaurant.rest_comments.first(2).each do |comment| %>
-        <div class="media">
-          <div class="media-left">
-            <%= comment.user.name %>
+        <div class="balloon5">
+          <div class="nameicon">
+            <p><%= comment.user.name %>さん</p>
           </div>
-          <div class="media-body">
-            <%= comment.comment %>
+          <div class="chatting">
+            <div class="says">
+              <p><%= comment.comment %></p>
+            </div>
           </div>
         </div>
       <% end %>

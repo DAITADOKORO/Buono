@@ -3,28 +3,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <% @repeats.each do |t| %>
-        <div class='row'>
-          <div class="pager">
-            <div class="col-xs-4 image_adjust">
-              <li><%= t.restaurant.name %></li>
-              <li><%= t.restaurant.tag_list %></li>
-              <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
-            </div>
-            <div class="col-xs-4 image_adjust">
-              <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
-            </div>
-            <div class="col-xs-4">
-              <div class="repeat_<%= t.restaurant.id %> float under-space">
-                <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+      <div class="page jscroll">
+        <% @repeats.each do |t| %>
+          <div class='row'>
+            <div class="pager">
+              <div class="col-xs-4 image_adjust">
+                <li><%= t.restaurant.name %></li>
+                <li><%= t.restaurant.tag_list %></li>
+                <%= link_to '詳細はこちら',restaurant_path(t.restaurant.shop_id) %>
               </div>
-              <div class="want_<%= t.restaurant.id %> float">
-                <%= render 'restaurants/want', restaurant: t.restaurant %>
+              <div class="col-xs-4 image_adjust">
+                <li><%= image_tag t.restaurant.image , class: 'img-responsive center-block' %></li>
+              </div>
+              <div class="col-xs-4">
+                <div class="repeat_<%= t.restaurant.id %> float under-space">
+                  <%= render 'restaurants/repeat', restaurant: t.restaurant %>
+                </div>
+                <div class="want_<%= t.restaurant.id %> float">
+                  <%= render 'restaurants/want', restaurant: t.restaurant %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+        <%= paginate @repeats %>
+      </div>
     </div>
     <div class="col-md-3">
       <div class="panel panel-default">
@@ -40,3 +43,4 @@
     </div>
   </div>
 </div>
+<%= render 'shared/pager' %>

@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <div class="want-list jscroll">
+      <div class="page jscroll">
         <% @wants.each do |t| %>
           <div class='row'>
             <div class="col-xs-4 image_adjust">
@@ -41,17 +41,4 @@
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
-<script>
-$(window).on('scroll', function() {
-    scrollHeight = $(document).height();
-    scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-          $('.jscroll').jscroll({
-            contentSelector: '.want-list',
-            nextSelector: 'span.next:last a'
-          });
-    }
-});
-</script>
-
+<%= render 'shared/pager' %>
