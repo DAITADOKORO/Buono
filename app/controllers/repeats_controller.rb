@@ -1,19 +1,19 @@
 class RepeatsController < ApplicationController
   def index
-    @repeats = Repeat.group(:restaurant_id).order("count(restaurant_id) desc")
+    @repeats = Repeat.group(:restaurant_id).order("count(restaurant_id) desc").page(params[:page]).per(10)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
   end
 
   def show
     @user = User.find(params[:user_id])
-    @repeats = @user.repeats
+    @repeats = @user.repeats.page(params[:page]).per(10)
   end
 
   def tag_cloud
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
     @restaurants = Restaurant.tagged_with(params[:tag_name])
     @hoge = Repeat.where(restaurant_id: @restaurants.ids)
-    @repeats = @hoge.group(:restaurant_id).order("count(restaurant_id) desc")
+    @repeats = @hoge.group(:restaurant_id).order("count(restaurant_id) desc").page(params[:page]).per(10)
   end
 
   def create

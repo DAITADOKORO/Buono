@@ -13,7 +13,7 @@ class WantsController < ApplicationController
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
     @restaurants = Restaurant.tagged_with(params[:tag_name])
     @hoge = Want.where(restaurant_id: @restaurants.ids)
-    @wants = @hoge.group(:restaurant_id).order("count(restaurant_id) desc")
+    @wants = @hoge.group(:restaurant_id).order("count(restaurant_id) desc").page(params[:page]).per(10)
   end
 
   def create
