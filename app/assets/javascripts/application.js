@@ -55,3 +55,11 @@ $(document).on('turbolinks:load', function(){
     hidePrevious : false
   });
 });
+
+
+const $form = document.getElementById('form');
+
+$form.addEventListener('input', (e) => {
+  let type = e.target.type;
+  console.log('onInput', type);
+});

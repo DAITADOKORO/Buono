@@ -122,15 +122,50 @@
     </div>
   </div>
 <br>
-<%= form_for [@restaurant, @rest_comment] do |f| %>
-<%= render 'shared/errors', object: f.object %>
+<script>
+    function check() {
+        var getText = document.getElementById('rest_comment_comment').commit.value;
+        if (getText.length <= 1) {
+            alert("文字を入力して下さい");
+        }
+    }
+</script>
+<script>
+    function check() {
+        var getText = document.getElementById('form_id id_set').value;
+        if (getText.length <= 1) {
+            alert("文字を入力して下さい");
+        }
+    }
+</script>
+
+    <script>
+        function check() {
+            var getText = document.form.text1.value;
+            if (getText.length <= 15) {
+                alert("文字を入力して下さい");
+            } else {
+                alert("okです");
+            }
+        }
+    </script>
+<form name="form">
+    <input name="text1" id="text1" type="text">
+    <button onClick='check()'>送信する</button>
+</form>
+
+
+
+<%= form_for [@restaurant, @rest_comment],  html: { class: :form_id, id: :form_id }  do |f| %>
   <div class="row">
     <div class="col-sm-7">
-        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに",id: 'id_set' %>
         <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
     </div>
   </div>
 <% end %>
+
+
 
 
 
