@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
 
 
 
-    @ramens = newsapi.get_everything(q: URI.encode('グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
+    @news = newsapi.get_everything(q: URI.encode('グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
     @wants = Want.all
     @repeats = Repeat.all
     @random = Restaurant.order("RANDOM()").limit(3)
@@ -37,8 +37,6 @@ class RestaurantsController < ApplicationController
     # attr_accessor :freeword
     logger = Logger.new('./webapi.log')
 
-    # key = ENV['GNAVI_API_KEY']
-    # key = 'eeaec53f40fbe0b0f103d3dc86b1d94b'
     params = URI.encode_www_form(array)
 
     uri = URI.parse("https://api.gnavi.co.jp/RestSearchAPI/v3/?#{params}")
@@ -79,12 +77,9 @@ class RestaurantsController < ApplicationController
   def show
     array = { keyid: Rails.application.credentials.grunavi[:api_key],
                 id: params[:id] }
-
     # attr_accessor :freeword
     logger = Logger.new('./webapi.log')
 
-    # key = ENV['GNAVI_API_KEY']
-    # key = 'eeaec53f40fbe0b0f103d3dc86b1d94b'
     params = URI.encode_www_form(array)
 
     uri = URI.parse("https://api.gnavi.co.jp/RestSearchAPI/v3/?#{params}")
@@ -137,6 +132,7 @@ class RestaurantsController < ApplicationController
     end
     @rest_comment = RestComment.new
   end
+
 
   private
 
