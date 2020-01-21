@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
 
 
 
-    @news = newsapi.get_everything(q: URI.encode('グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
+    @news = newsapi.get_everything(q: URI.encode('東京　グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
     @wants = Want.all
     @repeats = Repeat.all
     @random = Restaurant.order("RANDOM()").limit(3)
@@ -119,17 +119,18 @@ class RestaurantsController < ApplicationController
 
     @restaurant = Restaurant.find_by(shop_id: @hash[0][:id])
     if @restaurant == nil
-      @moments = newsapi.get_everything(q: URI.encode(@hash[0][:name]),language: 'jp', sortBy: 'popularity')
       @restaurant = Restaurant.new
       @restaurant.name = @hash[0][:name]
       @restaurant.shop_id = @hash[0][:id]
       @restaurant.image = @hash[0][:image_url][:shop_image1]
-      @restaurant.tag_list = @hash[0][:category]
-      @restaurant.area_list = @hash[0][:prefname]
+      @restaurant.tag_list = @hash[0][:code][:category_name_s]
+      @restaurant.prefecture = @hash[0][:code][:prefname]
+      @restaurant.area = @hash[0][:code][:areacode_s]
       @restaurant.save
-    else
-      @moments = newsapi.get_everything(q: URI.encode(@restaurant[:name]),language: 'jp', sortBy: 'popularity')
     end
+    @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
+    hoge = Restaurant.where.not(id: @restaurant[:id])
+    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(3)
     @rest_comment = RestComment.new
   end
 
@@ -137,7 +138,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :area_list)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area)
   end
 
 end

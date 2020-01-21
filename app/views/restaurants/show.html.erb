@@ -81,9 +81,10 @@
 <% end %>
 
 
-<h3>このお店を調べた人はこんな記事を見ています</h3>
-<% if @moments %>
-  <div class="row">
+
+<div class="row">
+  <% if @moments %>
+  <h3>このお店を調べた人はこんな記事を見ています</h3>
     <% @moments.first(1).each do |moment| %>
       <div class="col-xs-4">
         <%= moment.title %><br>
@@ -95,32 +96,44 @@
       </div>
       <div class="col-xs-8">
         <%= moment.description %>
-        <%= link_to '記事詳細へ飛ぶ', moment.url %>
+        <%= link_to '記事詳細へ飛ぶ', moment.url, target: :_blank, class: "underline" %>
       </div>
     <% end %>
-  </div>
-<% else %>
-  <h2>只今関連記事はございません。</h2>
-<% end %>
+  <% end %>
+</div>
 
+<div class="row">
+  <h3>近くのお店</h3>
+  <% if @neighbors %>
+  <% @neighbors.each do |t| %>
+    <div class="col-xs-4">
+      <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id)%></li>
+      <li><%= t.name %></li>
+      <li><%= t.tag_list %></li>
+    </div>
+  <% end %>
+  <% end %>
+</div>
+
+
+<div class="row">
 <h2>コメント（<%= @restaurant.rest_comments.count %>件）</h2>
-  <div class="row">
-    <div class="col-xs-7">
-      <% @restaurant.rest_comments.first(2).each do |comment| %>
-        <div class="balloon5">
-          <div class="nameicon">
-            <p><%= comment.user.name %>さん</p>
-          </div>
-          <div class="chatting">
-            <div class="says">
-              <p><%= comment.comment %></p>
-            </div>
+  <div class="col-xs-7">
+    <% @restaurant.rest_comments.first(2).each do |comment| %>
+      <div class="balloon5">
+        <div class="nameicon">
+          <p><%= comment.user.name %>さん</p>
+        </div>
+        <div class="chatting">
+          <div class="says">
+            <p><%= comment.comment %></p>
           </div>
         </div>
-      <% end %>
-      <%= link_to 'もっとコメントを見る', restaurant_rest_comments_path(@restaurant.id), class: "btn btn-base-1 mt-20 pull-right" %>
-    </div>
+      </div>
+    <% end %>
+    <%= link_to 'もっとコメントを見る', restaurant_rest_comments_path(@restaurant.id), class: "btn btn-base-1 mt-20 pull-right" %>
   </div>
+</div>
 <br>
 
 

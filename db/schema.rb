@@ -17,21 +17,12 @@ ActiveRecord::Schema.define(version: 2020_01_16_091134) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string "name"
-    t.string "name_kana"
     t.datetime "deleted_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "genre_name"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "repeats", force: :cascade do |t|
@@ -53,8 +44,9 @@ ActiveRecord::Schema.define(version: 2020_01_16_091134) do
     t.string "shop_id"
     t.string "name"
     t.text "image"
+    t.string "prefecture"
+    t.string "area"
     t.string "tag_list"
-    t.string "area_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
