@@ -106,7 +106,7 @@
   <h3>近くのお店</h3>
   <% if @neighbors %>
   <% @neighbors.each do |t| %>
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id)%></li>
       <li><%= t.name %></li>
       <li><%= t.tag_list %></li>

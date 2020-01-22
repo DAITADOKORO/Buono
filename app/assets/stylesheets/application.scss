@@ -25,7 +25,6 @@ body {
   font-family: 'Yu Gothic Medium', Meiryo, 'MS PGothic', verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  margin: 33px;
 }
 
 li {
@@ -42,14 +41,39 @@ nav.pagination {
   color: white;
 }
 
-.skippr-container{
-  width:100%;
+.login-logo {
+  float:left;
+  width: 40%;
   height: 450px;
 }
 
-.img-size{
-  background-size:cover!important;
+.skippr-container {
+  float: left;
+  width: 60%;
+  height: 450px;
+}
+
+.img-size {
+  background-size: cover!important;
   background-position: center!important;
+}
+
+.login {
+  clear: both;
+  padding: 100px;
+  color: #fff;
+  text-align: center;
+  background-image: url('wood.jpg');
+}
+
+.login h2 {
+  text-shadow: 5px 5px 1px #999999;
+  margin: 50px;
+}
+
+.login h3 {
+  text-shadow: 5px 5px 1px #999999;
+  line-height: 40px;
 }
 
 .image_adjust {
@@ -80,6 +104,10 @@ nav.pagination {
 
 .under-space {
   margin-bottom: 10px;
+}
+
+.up-space {
+  padding-top: 70px;
 }
 
 .underline {
@@ -141,4 +169,46 @@ nav.pagination {
 .says p {
   margin: 0;
   padding: 0;
+}
+
+
+.btn-cross {
+  display: inline-block;
+  position: relative;
+  padding: 0.25em 1em;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+}
+.btn-cross:before, .btn-cross:after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 2px;
+  height: -webkit-calc(100% + 14px);
+  height: calc(100% + 14px);
+  background-color: black;
+  transition: .3s;
+}
+.btn-cross:before {
+  left: 7px;
+}
+.btn-cross:after {
+  right: 7px;
+}
+.btn-cross:hover:before {
+  top: 0px;
+  left:0;
+  height: 100%;
+}
+.btn-cross:hover:after {
+  top: 0px;
+  right: 0;
+  height: 100%;
+}
+
+.login .actions {
+  color: black;
 }

@@ -11,21 +11,13 @@
 
   <body>
     <header class="admin-header">
-      <diV class="container">
+      <div class="container">
         <h3 class="nav navbar-nav navbar-left admin-logo"><%= link_to image_tag("logo.jpg", height: 80), admin_root_path %></h3>
         <ul class="nav navbar-nav navbar-right">
-         <% if admin_signed_in? %>
-          <li><%= link_to "あなたのお店", admin_admins_path %></li>
-          <li><%= link_to "店鋪一覧", admin_restaurants_path %></li>
           <li><%= link_to "会員一覧", admin_users_path %></li>
-          <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-         <% else %>
-          <li><%= link_to "マップ" %></li>
-          <li><%= link_to "ログイン", new_admin_session_path %></li>
-        <% end %>
         </ul>
-      </diV>
+      </div>
     </header>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>">

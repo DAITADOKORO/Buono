@@ -130,7 +130,7 @@ class RestaurantsController < ApplicationController
     end
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
-    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(3)
+    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
     @rest_comment = RestComment.new
   end
 

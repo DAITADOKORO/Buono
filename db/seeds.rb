@@ -8,4 +8,6 @@
 Admin.create!(
    email: 'admin@example.com',
    password: '000000',
+   name: 'Admin',
+   name_kana: 'アドミン'
   )
