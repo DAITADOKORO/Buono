@@ -126,6 +126,8 @@ class RestaurantsController < ApplicationController
       @restaurant.tag_list = @hash[0][:code][:category_name_s]
       @restaurant.prefecture = @hash[0][:code][:prefname]
       @restaurant.area = @hash[0][:code][:areacode_s]
+      @restaurant.latitude = @hash[0][:latitude]
+      @restaurant.longitude = @hash[0][:longitude]
       @restaurant.save
     end
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
@@ -138,7 +140,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area, :latitude, :longitude)
   end
 
 end

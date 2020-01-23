@@ -1,39 +1,108 @@
-<h2>Sign up</h2>
+<% content_for(:html_title) { "ログイン/新規登録" } %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="login-logo">
+  <%= link_to image_tag("login-logo.jpg", height: 450), root_path %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+<div class="skippr-container">
+  <div class="theTarget">
+    <div class="img-size" style="background-image: url(<%= asset_url 'hayashi.jpg' %>)"></div>
+    <div class="img-size" style="background-image: url(<%= asset_url 'tinkashisai.jpg' %>)"></div>
+    <div class="img-size" style="background-image: url(<%= asset_url 'ramu.jpg' %>)"></div>
+    <div class="img-size" style="background-image: url(<%= asset_url 'kiraku.jpg' %>)"></div>
+    <div class="img-size" style="background-image: url(<%= asset_url 'cona.jpg' %>)"></div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name_kana %><br>
-    <%= f.text_field :name_kana %>
+<div class="login">
+  <h3>お店選びで失敗したくない...<br>
+    他のサイトの評価があてにならない...<br>
+    本当に美味しいお店を知りたい...</h3>
+  <h2>Buono！はそんな貴方の強い味方です！</h2>
+  <h3>外部のニュースサイトから得た関連記事<br>
+    一人一人の意見が反映された誠実な評価システム</h3>
+  <h2>多角的な視点から、貴方の”知りたい”を手助けします！</h2>
+
+  <div class="container up-space">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-2">
+        <dl id="inbtn">
+          <dt class="btn-cross">ログインはこちら</dt>
+        </dl>
+        <dl id="upbtn">
+          <dt class="btn-cross">新規登録はこちら</dt>
+        </dl>
+      </div>
+      <div class="col-xs-3">
+        <ul id="signin">
+          <h4>ログイン</h4>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label 'メールアドレス' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+              <%= f.label 'パスワード' %><br />
+              <%= f.password_field :password, autocomplete: "current-password" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "ログインする", class: "new-user-button" %>
+            </div>
+          <% end %>
+        </ul>
+
+        <ul id="signup">
+          <h4>新規登録</h4>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="field">
+              <%= f.label '氏名' %><br>
+              <%= f.text_field :name %>
+            </div>
+
+            <div class="field">
+              <%= f.label '氏名カナ' %><br>
+              <%= f.text_field :name_kana %>
+            </div>
+
+            <div class="field">
+              <%= f.label 'メールアドレス' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+              <%= f.label 'パスワード（６文字以上）' %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.label 'パスワード（確認用）' %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+
+            <div class="actions">
+              <br><%= f.submit "新規登録する", class: "new-user-button" %>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<script>
+$('#signin').hide();
+</script>
