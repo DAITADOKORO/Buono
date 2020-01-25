@@ -74,6 +74,7 @@ gem 'paranoia'
 gem 'news-api'
 gem 'acts-as-taggable-on'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'dotenv-rails'
 
 group :production do
   gem 'mysql2'

@@ -10,14 +10,11 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
   def index
-    newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
-
-
-
+    newsapi = News.new(Rails.application.credentials.news_key)
     @news = newsapi.get_everything(q: URI.encode('東京　グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
     @wants = Want.all
     @repeats = Repeat.all
-    @random = Restaurant.order("RANDOM()").limit(3)
+    @random = Restaurant.order("RAND()").limit(3)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
   end
 
@@ -26,14 +23,11 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.tagged_with(params[:tag_name])
   end
 
-
   def search
     freeword = %W[#{params[:freeword1]} #{params[:freeword2]}].join(',')
     array = { keyid: Rails.application.credentials.grunavi[:api_key],
                 name: params[:name],
                 freeword: freeword }
-
-
     # attr_accessor :freeword
     logger = Logger.new('./webapi.log')
 
@@ -115,7 +109,7 @@ class RestaurantsController < ApplicationController
     rescue StandardError => e
       logger.error(e.message)
     end
-    newsapi = News.new("987e2ac50feb42b6884e30ce7b13c2e5")
+    newsapi = News.new(Rails.application.credentials.news_key)
 
     @restaurant = Restaurant.find_by(shop_id: @hash[0][:id])
     if @restaurant == nil
@@ -126,21 +120,18 @@ class RestaurantsController < ApplicationController
       @restaurant.tag_list = @hash[0][:code][:category_name_s]
       @restaurant.prefecture = @hash[0][:code][:prefname]
       @restaurant.area = @hash[0][:code][:areacode_s]
-      @restaurant.latitude = @hash[0][:latitude]
-      @restaurant.longitude = @hash[0][:longitude]
       @restaurant.save
     end
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
-    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
+    @neighbors = hoge.where(area: @restaurant[:area]).order("RAND()").limit(4)
     @rest_comment = RestComment.new
   end
-
 
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area, :latitude, :longitude)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area)
   end
 
 end
