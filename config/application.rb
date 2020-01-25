@@ -17,3 +17,5 @@ module Buono
     # the framework and any gems in your application.
   end
 end
+
+Rails.application.config.assets.precompile += %w( *.png *.jpg *.jpeg )
