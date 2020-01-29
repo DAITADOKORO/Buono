@@ -1,0 +1,11 @@
+<% @locations.each do |location| %>
+
+    // marker
+    var marker_<%= location.id %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
+        draggable: false,
+        map: map,
+        animation: google.maps.Animation.DROP
+        });
+
+<% end %>
