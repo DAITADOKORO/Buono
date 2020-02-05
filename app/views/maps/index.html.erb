@@ -3,16 +3,17 @@
   <button id="search">検索する</button>
 
   <script
-    src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['MAP_KEY'] %>&callback=initMap" async defer></script>
+    src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCUzGkhZi61kjs2Cyn59SMqtqZvgJbARKA&callback=initMap" async defer></script>
   <script>
+    var map;
 
   function initMap(){
     'use strict';
 
     var target = document.getElementById('target');
-    var map;
+    // var map;
     var center = {lat: 35.658034, lng: 139.701636};
-    var marker;
+    var marker = [];
     var infoWindow;
     var geocoder = new google.maps.Geocoder();
 
@@ -49,12 +50,7 @@
           west = pos.getSouthWest().lng();
           return $.getScript("/restaurants/marker?&north=" + north + "&south=" + south + "&east=" + east + "&west=" + west);
 
-          infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-            content: '<div class="sample">TAM 大阪</div>' // 吹き出しに表示する内容
-          });
-          marker.addListener('click', function() { // マーカーをクリックしたとき
-            infoWindow.open(map, marker); // 吹き出しの表示
-          });
+
 
         } else {
           alert('No results found');

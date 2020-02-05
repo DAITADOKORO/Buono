@@ -133,9 +133,9 @@ class RestaurantsController < ApplicationController
   def marker
     lat = Range.new(*[params["north"], params["south"]].sort)
     lng = Range.new(*[params["east"], params["west"]].sort)
+    @map = params["map"]
     # データ取得
     @locations = Restaurant.where(latitude: lat, longitude: lng)
-    forjson = @locations.to_json
   end
 
   private

@@ -11,6 +11,7 @@ class RestCommentsController < ApplicationController
     restaurant = Restaurant.find(params[:restaurant_id])
     comment = current_user.rest_comments.new(rest_comment_params)
     comment.restaurant_id = restaurant.id
+    comment.score = Language.get_data(rest_comment_params[:comment])
     if comment.save
       redirect_to restaurant_rest_comments_path(restaurant)
     else
