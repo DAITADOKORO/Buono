@@ -124,6 +124,7 @@ class RestaurantsController < ApplicationController
       @restaurant.longitude = @hash[0][:longitude]
       @restaurant.save
     end
+    binding.pry
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
     @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
