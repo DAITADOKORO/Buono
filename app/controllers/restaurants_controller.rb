@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
     @news = newsapi.get_everything(q: URI.encode('東京　グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
     @wants = Want.all
     @repeats = Repeat.all
-    @random = Restaurant.order("RAND()").limit(3)
+    @random = Restaurant.order("RANDOM()").limit(3)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
   end
 
@@ -120,19 +120,29 @@ class RestaurantsController < ApplicationController
       @restaurant.tag_list = @hash[0][:code][:category_name_s]
       @restaurant.prefecture = @hash[0][:code][:prefname]
       @restaurant.area = @hash[0][:code][:areacode_s]
+      @restaurant.latitude = @hash[0][:latitude]
+      @restaurant.longitude = @hash[0][:longitude]
       @restaurant.save
     end
     binding.pry
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
-    @neighbors = hoge.where(area: @restaurant[:area]).order("RAND()").limit(4)
+    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
     @rest_comment = RestComment.new
+  end
+
+  def marker
+    lat = Range.new(*[params["north"], params["south"]].sort)
+    lng = Range.new(*[params["east"], params["west"]].sort)
+    @map = params["map"]
+    # データ取得
+    @locations = Restaurant.where(latitude: lat, longitude: lng)
   end
 
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area, :latitude, :longitude)
   end
 
 end
