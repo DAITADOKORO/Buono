@@ -12,10 +12,11 @@ class RestaurantsController < ApplicationController
   def index
     newsapi = News.new(Rails.application.credentials.news_key)
     @news = newsapi.get_everything(q: URI.encode('東京　グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
-    @wants = Want.all
-    @repeats = Repeat.all
+    @wants = Want.group(:restaurant_id).order("count(restaurant_id) desc")
+    @repeats = Repeat.group(:restaurant_id).order("count(restaurant_id) desc")
     @random = Restaurant.order("RANDOM()").limit(3)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
+    @scores = Restaurant.all.order(:good_score)
   end
 
   def tag_cloud
@@ -124,11 +125,15 @@ class RestaurantsController < ApplicationController
       @restaurant.longitude = @hash[0][:longitude]
       @restaurant.save
     end
-    binding.pry
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
     @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
     @rest_comment = RestComment.new
+    @score = @restaurant.rest_comments.all.sum(:score)
+    if @score > 1
+      @restaurant.good_score = @score.floor
+      @restaurant.update
+    end
   end
 
   def marker
@@ -142,7 +147,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area, :latitude, :longitude)
+    params.require(:restaurant).permit(:name, :shop_id, :tag_list, :image, :prefecture, :area, :latitude, :longitude, :good_score)
   end
 
 end

@@ -3,7 +3,9 @@
 <% @hash.each do |rest| %>
   <div class="row">
     <div class="col-md-12">
-      <h2><strong><%= rest[:name] %></strong></h2>
+      <h2>
+        <strong><%= rest[:name] %></strong>  <i class="far fa-thumbs-up"></i><%= @score %>
+      </h2>
     </div>
   </div>
   <div class="row">
@@ -114,6 +116,14 @@
           </div>
         </div>
       </div>
+      感情評価
+        <% if comment&.score > 0 %>
+          <a class="btn btn-danger"><strong><%= comment&.score %></strong></a>
+        <% elsif comment&.score = 0 %>
+          <a class="btn btn-default"><strong><%= comment&.score %></strong></a>
+        <% else %>
+          <a class="btn btn-info"><strong><%= comment&.score %></strong></a>
+        <% end %>
     <% end %>
     <%= link_to 'もっとコメントを見る', restaurant_rest_comments_path(@restaurant.id), class: "btn btn-base-1 mt-20 pull-right" %>
   </div>
@@ -122,6 +132,7 @@
 <%= form_for [@restaurant, @rest_comment] do |f| %>
   <div class="row">
     <%= render 'shared/errors', object: @rest_comment %>
+    <h4><i class="far fa-thumbs-up">コメントで応援しよう！</i></h4>
     <div class="col-sm-7">
       <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
       <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>

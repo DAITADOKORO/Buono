@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_01_25_070354) do
     t.integer "user_id"
     t.integer "restaurant_id"
     t.text "comment"
+    t.decimal "score", precision: 5, scale: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,8 +55,9 @@ ActiveRecord::Schema.define(version: 2020_01_25_070354) do
     t.string "prefecture"
     t.string "area"
     t.string "tag_list"
-    t.decimal "latitude", precision: 8, scale: 6
+    t.float "latitude"
     t.decimal "longitude", precision: 9, scale: 6
+    t.integer "good_score", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

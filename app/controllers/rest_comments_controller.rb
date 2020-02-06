@@ -65,6 +65,7 @@ class RestCommentsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:restaurant_id])
+    @score = @restaurant.rest_comments.all.sum(:score)
   end
 
   private

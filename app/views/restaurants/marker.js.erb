@@ -1,16 +1,21 @@
-var map;
-var center = {lat: 35.658034, lng: 139.701636};
-var marker = [];
-      map = new google.maps.Map(target, {
-      center: center,
-      zoom: 15
-    });
+if ( map == false ){
+  initMap();
+   console.log('initMap');
+}
 <% @locations.each do |location| %>
 console.log(<%= location.latitude %>)
 console.log(<%= location.longitude %>)
+    // marker
+   // var pos = new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>);
+    var pos = {lat: <%= location.latitude %>, lng: <%= location.longitude %>};
+    console.log(pos)
     var marker_<%= location.id %> = new google.maps.Marker({
-        position: center,
+        position: pos,
         map: map
-        });
 
+        });
+    console.log(marker_<%= location.id %>)
+
+    marker_<%= location.id %>.setMap(map);
+    map.setCenter(marker_<%= location.id %>.getPosition());
 <% end %>

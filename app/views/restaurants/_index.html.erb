@@ -21,6 +21,7 @@
     <div class="col-xs-4">
       <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id) %></li>
       <li><%= t[:name] %></li>
+      <li>スコア <a class="btn btn-danger"><%= t.good_score %></a></li>
     </div>
   <% end %>
 </div>
@@ -31,6 +32,7 @@
       <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
       <li><%= t.restaurant.name %></li>
       <li><%= t.restaurant.tag_list %></li>
+      <li>スコア <a class="btn btn-danger"><%= t.restaurant.good_score %></a></li>
     </div>
   <% end %>
 </div>
@@ -41,6 +43,18 @@
       <li><%= link_to image_tag(t.restaurant.image), restaurant_path(t.restaurant.shop_id)%></li>
       <li><%= t.restaurant.name %></li>
       <li><%= t.restaurant.tag_list %></li>
+      <li>スコア <a class="btn btn-danger"><%= t.restaurant.good_score %></a></li>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <h3>コメントで高評価のお店</h3>
+  <% scores.first(3).each do |t| %>
+    <div class="col-xs-4">
+      <li><%= link_to image_tag(t.image), restaurant_path(t.shop_id)%></li>
+      <li><%= t.name %></li>
+      <li><%= t.tag_list %></li>
+      <li>score <a class="btn btn-danger"><%= t.good_score %></a></li>
     </div>
   <% end %>
 </div>

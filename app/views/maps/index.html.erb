@@ -5,11 +5,11 @@
   <script
     src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCUzGkhZi61kjs2Cyn59SMqtqZvgJbARKA&callback=initMap" async defer></script>
   <script>
-    var map;
+    var map = false;
 
   function initMap(){
     'use strict';
-
+    console.log('initMap');
     var target = document.getElementById('target');
     // var map;
     var center = {lat: 35.658034, lng: 139.701636};

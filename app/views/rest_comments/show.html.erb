@@ -1,6 +1,6 @@
 <% content_for(:html_title) { "#{@restaurant.name} コメント" } %>
 <div class="container">
-  <h3><%= @restaurant.name %></h3>
+  <h3><%= @restaurant.name %>   <i class="far fa-thumbs-up"></i><%= @score %></h3>
   <h3>みんなのコメント（<%= @restaurant.rest_comments.count %>件）</h3>
     <% @restaurant.rest_comments.each do |comment| %>
       <div class="balloon5">
@@ -13,7 +13,14 @@
           </div>
         </div>
       </div>
-      <%= post_comment&.score %>
+      感情評価
+        <% if comment&.score > 0 %>
+          <a class="btn btn-danger"><strong><%= comment&.score %></strong></a>
+        <% elsif comment&.score = 0 %>
+          <a class="btn btn-default"><strong><%= comment&.score %></strong></a>
+        <% else %>
+          <a class="btn btn-info"><strong><%= comment&.score %></strong></a>
+        <% end %>
     <% end %>
   <%= link_to '戻る',restaurant_path(@restaurant.shop_id), class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 </div>
