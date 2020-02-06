@@ -130,10 +130,6 @@ class RestaurantsController < ApplicationController
     @neighbors = hoge.where(area: @restaurant[:area]).order("RAND()").limit(4)
     @rest_comment = RestComment.new
     @score = @restaurant.rest_comments.all.sum(:score)
-    if @score > 1
-      @restaurant.good_score = @score.floor
-      @restaurant.update
-    end
   end
 
   def marker

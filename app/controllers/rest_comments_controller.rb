@@ -66,6 +66,10 @@ class RestCommentsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:restaurant_id])
     @score = @restaurant.rest_comments.all.sum(:score)
+    if @score >= 2
+      @restaurant.good_score = @score.floor
+      @restaurant.save
+    end
   end
 
   private
