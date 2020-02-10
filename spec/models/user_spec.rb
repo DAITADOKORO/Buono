@@ -1,31 +1,27 @@
 require 'rails_helper'
 
-RSpec.describe 'Userモデルのテスト', type: :model do
-  # 名前が空欄で登録できない→名前を空欄で登録したらfalse
-  # バリデーションしていない状態で失敗→設定したら成功
-  # 登録できるかできないか 登録できたら失敗
-  # エラーメッセージがなければ失敗
+RSpec.describe User do
 
   describe 'バリデーションのテスト' do
-    let(:user) { build(:user) }
-    subject { test_user.valid? }
     context 'nameカラム' do
-      let(:test_user) { user }
       it '空欄でないこと' do
-        test_user.name = ''
-        is_expected.to eq false;
+        user = User.new(name: '')
+        expect(user.valid?).to eq false
       end
     end
 
     context 'name_kanaカラム' do
-      let(:test_user) { user }
-            it '空欄でないこと' do
-        test_user.name_kana = ''
-        is_expected.to eq false;
+      it '空欄でないこと' do
+        user = User.new(name_kana: '')
+        expect(user.valid?).to eq false
       end
       it 'カナ入力であること' do
-        test_user.name_kana = Faker::Lorem.characters(number:51)
-        is_expected.to eq false
+        user = User.new(name_kana: 'カタカナ')
+        expect(user.valid?).to eq true
+      end
+      it 'かな入力はできないこと' do
+        user = User.new(name_kana: 'ひらがな')
+        expect(user.valid?).to eq false
       end
     end
   end
