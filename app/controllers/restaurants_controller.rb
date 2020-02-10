@@ -14,9 +14,9 @@ class RestaurantsController < ApplicationController
     @news = newsapi.get_everything(q: URI.encode('東京　グルメ　美味　店　選'),language: 'jp', sortBy: 'popularity')
     @wants = Want.group(:restaurant_id).order("count(restaurant_id) desc")
     @repeats = Repeat.group(:restaurant_id).order("count(restaurant_id) desc")
-    @random = Restaurant.order("RAND()").limit(3)
+    @random = Restaurant.order("RANDOM()").limit(3)
     @tags = Restaurant.tag_counts_on(:tags).order('count DESC')
-    @scores = Restaurant.all.order(:good_score)
+    @scores = Restaurant.all.order(good_score: 'DESC')
   end
 
   def tag_cloud
@@ -127,7 +127,7 @@ class RestaurantsController < ApplicationController
     end
     @moments = newsapi.get_everything(q: URI.encode("#{@restaurant.prefecture} #{@restaurant.tag_list} 美味 店　選") ,language: 'jp', sortBy: 'popularity')
     hoge = Restaurant.where.not(id: @restaurant[:id])
-    @neighbors = hoge.where(area: @restaurant[:area]).order("RAND()").limit(4)
+    @neighbors = hoge.where(area: @restaurant[:area]).order("RANDOM()").limit(4)
     @rest_comment = RestComment.new
     @score = @restaurant.rest_comments.all.sum(:score)
   end
