@@ -12,15 +12,13 @@
     <header class="user-header">
       <diV class="container">
         <h3 class="nav navbar-nav navbar-left user-logo"><%= link_to image_tag("logo.jpg", height: 80), root_path %></h3>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="humburger nav navbar-nav navbar-right">
          <% if user_signed_in? %>
           <li><%= link_to current_user.name, user_path(current_user.id) %></li>
           <li><%= link_to "行ってみたいお店", user_wants_path(current_user.id) %></li>
           <li><%= link_to "また行きたいお店", user_repeats_path(current_user.id) %></li>
-          <li><%= link_to "マップ", maps_index_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
          <% else %>
-          <li><%= link_to "マップ",maps_index_path %></li>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path, data: {"turbolinks" => false} %></li>
          <% end %>

@@ -131,7 +131,7 @@
 
 <%= form_for [@restaurant, @rest_comment] do |f| %>
   <div class="row">
-    <%= render 'shared/errors', object: @rest_comment %>
+    <%= render 'shared/errors', object: f.object %>
     <h4><i class="far fa-thumbs-up">コメントで応援しよう！</i></h4>
     <div class="col-sm-7">
       <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>

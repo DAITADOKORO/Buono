@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'restaurants/marker',  to: 'restaurants#marker',  as: :marker
-  get 'maps/index'
   root 'restaurants#index'
 
 namespace :admin do

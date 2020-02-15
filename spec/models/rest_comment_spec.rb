@@ -5,6 +5,7 @@ RSpec.describe 'RestCommentモデルのテスト', type: :model do
     context 'nameカラム' do
       it '空欄でないこと' do
         comment = RestComment.new(comment: '')
+        commens.save
         expect(comment.valid?).to eq false
       end
     end
