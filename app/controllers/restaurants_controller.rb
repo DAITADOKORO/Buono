@@ -111,6 +111,7 @@ class RestaurantsController < ApplicationController
       logger.error(e.message)
     end
     newsapi = News.new(Rails.application.credentials.news_key)
+    @googleapi = "https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=" + Rails.application.credentials.map_key + "&callback=initMap"
 
     @restaurant = Restaurant.find_by(shop_id: @hash[0][:id])
     if @restaurant == nil
