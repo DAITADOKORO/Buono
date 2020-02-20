@@ -187,3 +187,14 @@ E, [2020-01-21T21:19:01.397114 #3749] ERROR -- : HTTP ERROR: code=400 message=Ba
 E, [2020-01-21T21:20:15.640319 #3749] ERROR -- : HTTP ERROR: code=400 message=Bad Request
 E, [2020-01-23T16:27:19.624336 #5828] ERROR -- : HTTP ERROR: code=400 message=Bad Request
 E, [2020-01-28T18:53:13.203061 #8901] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:24:59.776681 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:25:56.703104 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:26:16.512451 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:27:03.124011 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:27:41.616737 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:28:05.502376 #18266] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:29:25.985971 #18496] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:30:13.158269 #18824] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:31:29.526501 #18856] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T12:31:41.376897 #18856] ERROR -- : HTTP ERROR: code=400 message=Bad Request
+E, [2020-02-15T22:58:42.731084 #19079] ERROR -- : Failed to open TCP connection to api.gnavi.co.jp:443 (getaddrinfo: nodename nor servname provided, or not known)

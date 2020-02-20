@@ -597,4 +597,4 @@ cloud-init[705]: ci-info: |   1   |  fe80::/64  |    ::   |   enp0s3  |   U   |
 
 Ubuntu 18.04.3 LTS ubuntu-bionic ttyS0
 
-ubuntu-bionic login: 
+ubuntu-bionic login: [139761.010648] e1000 0000:00:03.0 enp0s3: Reset adapter
