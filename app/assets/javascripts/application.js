@@ -51,3 +51,15 @@ $(function () {
     });
 });
 
+$(window).on('scroll', function() {
+  var scrollHeight, scrollPosition;
+  scrollHeight = $(document).height();
+  scrollPosition = $(window).height() + $(window).scrollTop();
+  if ((scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+    $('.jscroll').jscroll({
+      contentSelector: '.page',
+      nextSelector: 'span.next:last a'
+    });
+    return;
+  }
+});
